@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XTRA GOOD LABS — Free apps for DJs and beatmakers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--panel:#111;--panel2:#161616;--line:#262626;--ink:#f2f2f2;--muted:#9a9a9a;
+  --display:Impact,'Anton','Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --body:'Inter',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --spin:#3ddc84;--mixx:#e8620c;--crate:#d9a441;--beat:#f4aa54;--beat2:#b79ae6;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.display{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:.92;font-weight:400}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:50;background:rgba(7,7,7,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:18px;height:60px}
+.logo{font-family:var(--display);font-size:24px;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.logo b{background:#fff;color:#000;padding:2px 7px 0;font-weight:400}
+nav.top .links{display:flex;gap:4px;margin-left:auto;flex-wrap:nowrap;overflow-x:auto}
+nav.top .links a{text-decoration:none;font-size:13px;font-weight:600;color:#cfcfcf;padding:8px 10px;border-radius:8px;white-space:nowrap}
+nav.top .links a:hover{background:#1a1a1a;color:#fff}
+nav.top .links a.coffee{background:#ffdd00;color:#000}
+
+/* hero */
+.hero{padding:84px 0 40px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(64px,13vw,176px);margin:14px 0 0}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:2px #fff}
+.hero p.lede{font-size:clamp(18px,2.2vw,22px);color:#cfcfcf;max-width:640px;margin:22px 0 30px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#141414;color:#fff;padding:12px 18px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transition:transform .12s,background .12s}
+.btn:hover{transform:translateY(-1px);background:#1d1d1d}
+.btn.white{background:#fff;color:#000;border-color:#fff}
+.btn.white:hover{background:#e6e6e6}
+.btn.small{padding:8px 12px;font-size:13px;border-radius:8px}
+.ticker{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.ticker .track{display:inline-block;animation:tick 28s linear infinite;padding:14px 0}
+.ticker span{font-family:var(--display);font-size:28px;margin:0 22px;color:#555}
+.ticker span.c1{color:var(--spin)}.ticker span.c2{color:var(--mixx)}.ticker span.c3{color:var(--crate)}.ticker span.c4{color:var(--beat)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker .track{animation:none}}
+
+/* cards */
+section{padding:70px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(40px,6vw,68px);margin:6px 0 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:980px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid4{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:border-color .15s,transform .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--acc)}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--acc)}
+.card img.icon{width:64px;height:64px;border-radius:14px}
+.card h3{font-family:var(--display);font-size:34px;margin:4px 0 0;font-weight:400;text-transform:uppercase}
+.card p{margin:0;color:#bdbdbd;font-size:14.5px;flex:1}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--acc);text-transform:uppercase}
+.card .row{display:flex;gap:8px;flex-wrap:wrap}
+.card .btn.go{background:var(--acc);color:#000;border-color:var(--acc)}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.flow div{padding:20px;border-right:1px solid var(--line);position:relative}
+.flow div:last-child{border-right:0}
+.flow div b{font-family:var(--display);font-size:26px;font-weight:400;display:block;color:var(--acc);text-transform:uppercase}
+.flow div span{color:#bdbdbd;font-size:14px}
+.flow div .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
+@media (max-width:820px){.flow{grid-template-columns:1fr 1fr}.flow div:nth-child(2){border-right:0}.flow div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* app sections */
+.app{border-top:1px solid var(--line)}
+.app-top{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;margin-bottom:34px}
+@media (max-width:900px){.app-top{grid-template-columns:1fr}}
+.app h2{font-size:clamp(56px,8vw,104px);margin:8px 0 6px;color:#fff}
+.app h2 sup{font-size:.28em;vertical-align:top;margin-left:4px;color:var(--acc)}
+.app .sub{font-family:var(--display);font-size:clamp(22px,3vw,32px);color:var(--acc);text-transform:uppercase;margin:0 0 14px}
+.app p.desc{color:#cfcfcf;font-size:17px;margin:0 0 18px}
+.app ul.feat{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px}
+.app ul.feat li{padding-left:22px;position:relative;color:#d6d6d6;font-size:15px}
+.app ul.feat li::before{content:"";position:absolute;left:0;top:8px;width:10px;height:10px;background:var(--acc);border-radius:2px}
+.app .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.app .btn.go{background:var(--acc);color:#000;border-color:var(--acc)}
+.shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#000}
+.shot img{width:100%}
+.credit{font-size:13px;color:var(--muted);margin-top:14px}
+.credit b{color:#ddd}
+
+/* demo shell */
+.demo{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.demo-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:#0d0d0d;flex-wrap:wrap}
+.demo-bar .dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc)}
+.demo-bar .t{font-family:var(--display);font-size:20px;text-transform:uppercase}
+.demo-bar .note{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+.demo-body{padding:18px}
+.ctl{background:#1b1b1b;border:1px solid #2c2c2c;color:#eee;border-radius:9px;padding:9px 13px;font-weight:700;font-size:13px}
+.ctl:hover{background:#242424}
+.ctl.on{background:var(--acc);border-color:var(--acc);color:#000}
+.ctl:disabled{opacity:.35;cursor:default}
+.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+input[type=range]{accent-color:var(--acc)}
+input[type=text],input[type=search]{background:#0c0c0c;border:1px solid #2c2c2c;color:#eee;border-radius:9px;padding:10px 12px;font:inherit;font-size:14px;width:100%}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+/* beatdeck demo */
+.bd-top{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.bd-top .tempo{display:flex;align-items:center;gap:8px}
+.bd-top .tempo b{font-family:var(--mono);font-size:22px;min-width:44px;text-align:right}
+.bd-grid{display:grid;grid-template-columns:86px repeat(16,1fr);gap:5px;align-items:center}
+.bd-grid .name{font-size:12px;font-weight:700;color:#cfcfcf}
+.step{aspect-ratio:1;border-radius:6px;border:1px solid #2b2b2b;background:#1a1a1a;padding:0;transition:background .06s}
+.step.beat4{background:#222}
+.step.on{background:var(--beat);border-color:var(--beat)}
+.step.row1.on{background:var(--beat2);border-color:var(--beat2)}
+.step.row3.on{background:#7fd6c4;border-color:#7fd6c4}
+.step.now{box-shadow:0 0 0 2px #fff inset}
+.bd-pads{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:18px}
+.pad{border-radius:10px;border:1px solid #3a2f4a;background:#211a2b;color:#d9cdee;padding:14px 8px;font-size:12px;font-weight:700;text-align:left;min-height:66px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .05s,background .05s}
+.pad small{font-family:var(--mono);color:#8b7fa1;font-size:10px}
+.pad.hit{background:var(--beat2);color:#000;transform:scale(.97)}
+@media (max-width:700px){.bd-grid{grid-template-columns:56px repeat(16,1fr);gap:2px}.step{border-radius:3px}.bd-pads{grid-template-columns:repeat(4,1fr)}}
+
+/* good mixx demo */
+.gm-status{display:flex;align-items:center;gap:10px;background:#141414;border:1px solid #262626;border-radius:10px;padding:10px 14px;font-size:14px;color:#bdbdbd;margin-bottom:14px}
+.gm-status i{width:8px;height:8px;border-radius:50%;background:#2ecc71;display:inline-block}
+.gm-decks{display:grid;grid-template-columns:1fr 160px 1fr;gap:12px;align-items:stretch}
+@media (max-width:760px){.gm-decks{grid-template-columns:1fr}}
+.deck{border:1px solid #2a2a2a;border-radius:12px;padding:14px;background:#141414;position:relative}
+.deck.playing{border-color:var(--deckc);box-shadow:0 0 0 1px var(--deckc)}
+.deck .lbl{color:var(--deckc)}
+.deck h4{margin:8px 0 2px;font-size:20px}
+.deck .art{color:#9a9a9a;font-size:14px}
+.chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;border:1px solid #333;border-radius:6px;padding:3px 7px;color:#ccc}
+.chip.acc{color:var(--acc);border-color:#5a3418}
+.deck .badge{position:absolute;top:12px;right:12px;background:var(--deckc);color:#000;font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 7px;border-radius:5px;letter-spacing:.1em}
+.deck .prog{height:4px;background:#222;border-radius:4px;margin-top:12px;overflow:hidden}
+.deck .prog i{display:block;height:100%;background:var(--deckc);width:0}
+.gm-btn{background:var(--mixx);border:0;border-radius:12px;color:#1a0800;font-family:var(--display);font-size:30px;line-height:1;letter-spacing:.04em;box-shadow:0 0 30px rgba(232,98,12,.35);transition:transform .08s}
+.gm-btn:active{transform:scale(.96)}
+.gm-mid{display:flex;flex-direction:column;gap:8px}
+.gm-mid .gm-btn{flex:1;min-height:110px}
+.gm-mid small{font-family:var(--mono);font-size:10px;text-align:center;color:var(--muted);letter-spacing:.1em}
+.gm-next{margin-top:14px;border:1px solid #262626;border-radius:12px;padding:14px}
+.gm-filters{display:flex;gap:8px;margin:10px 0 14px;flex-wrap:wrap}
+.gm-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.gm-cols{grid-template-columns:1fr}}
+.sug{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid #2a2a2a;border-radius:10px;padding:9px 12px;margin-top:8px;background:#141414;width:100%;text-align:left;color:#eee}
+.sug:hover{border-color:var(--mixx)}
+.sug b{font-size:14px;display:block}
+.sug span{font-size:12px;color:#9a9a9a}
+.sug .r{text-align:right;font-family:var(--mono);font-size:12px;white-space:nowrap}
+.sug .r em{display:block;font-style:normal;font-size:10.5px;color:var(--mixx)}
+.sug.proven{border-color:#3b5d3f;background:#121a13}
+.sug.proven .r em{color:#58d07a}
+.empty{color:#8a8a8a;font-size:14px;padding:10px 0}
+.saved-sign{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .2s;z-index:5}
+.saved-sign span{font-family:var(--display);font-size:clamp(40px,8vw,84px);color:#000;background:#58d07a;padding:10px 26px 4px;border-radius:14px;transform:rotate(-3deg);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.saved-sign.show{opacity:1}
+
+/* crate os demo */
+.co-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;align-items:flex-end}
+.co-head .stats{display:flex;gap:18px}
+.co-head .stats div b{display:block;font-family:var(--display);font-size:30px;color:var(--crate);font-weight:400}
+.co-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:820px){.co-cols{grid-template-columns:1fr}}
+.co-box{border:1px solid #262626;border-radius:12px;padding:14px;background:#0f0f0e}
+.co-list{max-height:380px;overflow:auto;margin-top:8px}
+.co-row{display:flex;align-items:center;gap:10px;border-bottom:1px solid #1f1f1f;padding:9px 2px}
+.co-row .meta{flex:1;min-width:0}
+.co-row .meta b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.co-row .meta span{font-size:12px;color:#8d8d8d}
+.co-row .n{font-family:var(--mono);color:var(--crate);width:20px;text-align:right}
+.co-row .k{font-family:var(--mono);font-size:11px;color:#aaa;white-space:nowrap}
+.mini{background:#232323;border:1px solid #333;color:#ddd;border-radius:7px;padding:5px 9px;font-size:12px;font-weight:700}
+.mini:hover{background:#2e2e2e}
+.mini:disabled{opacity:.3}
+.mini.add{background:var(--crate);color:#1a0d03;border-color:var(--crate)}
+.co-total{font-family:var(--display);font-size:22px;font-weight:400}
+.co-out{margin-top:12px;display:none}
+.co-out.show{display:block}
+.co-out pre{background:#050505;border:1px solid #262626;border-radius:10px;padding:12px;font-family:var(--mono);font-size:12px;color:#c9e7b0;max-height:200px;overflow:auto;white-space:pre-wrap;margin:8px 0 0}
+
+/* spin deck demo */
+.sd-top{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.sd-song{flex:1;min-width:220px;display:flex;align-items:center;gap:12px;background:#141414;border:1px solid #262626;border-radius:12px;padding:10px 14px}
+.sd-song .disc{width:44px;height:44px;border-radius:50%;background:repeating-radial-gradient(#111 0 2px,#1d1d1d 2px 4px);border:2px solid #333;position:relative;flex:none}
+.sd-song .disc::after{content:"";position:absolute;inset:15px;border-radius:50%;background:var(--spin)}
+.sd-song .disc.spin{animation:rot 1.6s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.sd-song b{display:block}.sd-song span{font-size:13px;color:#999}
+.sd-progress{height:8px;background:#1d1d1d;border-radius:6px;overflow:hidden;margin:6px 0 4px}
+.sd-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--spin),#a6f5c6)}
+.sd-msg{font-family:var(--mono);font-size:12px;color:#aaa;min-height:18px}
+.lanes{display:grid;gap:8px;margin-top:10px}
+.lane{display:grid;grid-template-columns:110px 1fr 64px;gap:10px;align-items:center;background:#121212;border:1px solid #242424;border-radius:10px;padding:8px 10px;transition:opacity .2s}
+.lane.muted{opacity:.35}
+.lane .nm{font-family:var(--display);font-size:20px;color:var(--lc);text-transform:uppercase}
+.lane canvas{width:100%;height:42px;display:block}
+.lane.whole .nm{color:#fff}
+.sd-quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.sd-quick[hidden]{display:none}
+.co-cols>*,.gm-cols>*,.gm-decks>*{min-width:0}
+@media (max-width:600px){.co-row{flex-wrap:wrap}.co-row .meta{flex-basis:100%}.co-row .k{flex:1}.co-row .n{order:-1}.demo-body{padding:12px}.lane{grid-template-columns:76px 1fr 52px}.lane .nm{font-size:16px}nav.top .links a:not(.coffee){display:none}}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+@media (max-width:760px){.gallery{grid-template-columns:1fr}}
+.gallery figure{margin:0}
+.gallery figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:60px 0 80px}
+footer .big{font-size:clamp(48px,9vw,120px);margin:0}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;margin-top:30px}
+@media (max-width:760px){footer .cols{grid-template-columns:1fr}}
+footer h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin:0 0 10px;font-weight:400}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14px}
+footer ul a{text-decoration:none;color:#d6d6d6}
+footer ul a:hover{color:#fff;text-decoration:underline}
+footer .fine{font-size:12.5px;color:#7a7a7a;margin-top:36px;max-width:820px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#fff;color:#000;font-weight:700;padding:10px 16px;border-radius:10px;opacity:0;transition:.2s;z-index:100;font-size:14px}
+.toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>XTRA</b>GOOD LABS</a>
+    <div class="links">
+      <a href="#spin-deck">Spin Deck</a>
+      <a href="#good-mixx">GOOD MIXX</a>
+      <a href="#crate-os">Crate OS</a>
+      <a href="#beatdeck">Beatdeck</a>
+      <a class="coffee" href="https://buymeacoffee.com/xtragoodlabs">☕ Coffee</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">XTRA GOOD LABS · Free Mac apps · Open source on GitHub</div>
+    <h1 class="display">Tools for<br><span class="outline">the booth.</span></h1>
+    <p class="lede">Four free apps for DJs and beatmakers: decks, mix memory, crates and beats. Try each one right here in your browser, then download the real thing for your Mac.</p>
+    <div class="ctas">
+      <a class="btn white" href="#apps">See the apps ↓</a>
+      <a class="btn" href="https://github.com/XTRAGOODLABS">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
+</header>
+
+<section id="apps">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow">The lineup</div><h2 class="display">Four apps. One crate.</h2></div>
+      <p style="color:var(--muted);max-width:380px;margin:0">No accounts. No subscriptions. Your music and your mixes stay on your Mac.</p>
+    </div>
+    <div class="grid4">
+      <article class="card" style="--acc:var(--spin)">
+        <img class="icon" src="img/spindeck-icon.png" alt="">
+        <span class="tag">DJ app · free beta</span>
+        <h3>Spin Deck™</h3>
+        <p>A full DJ app with real decks, a mixer, stems made on your Mac and GOOD MIXX built in.</p>
+        <div class="row"><a class="btn small go" href="#spin-deck">Try it</a><a class="btn small" href="https://github.com/XTRAGOODLABS/spin-deck">GitHub</a></div>
+      </article>
+      <article class="card" style="--acc:var(--mixx)">
+        <img class="icon" src="img/goodmixx-icon.png" alt="">
+        <span class="tag">Booth companion</span>
+        <h3>GOOD MIXX™</h3>
+        <p>Remembers the blends that work and tells you what to play next, following DJAY or TRAKTOR.</p>
+        <div class="row"><a class="btn small go" href="#good-mixx">Try it</a><a class="btn small" href="https://github.com/XTRAGOODLABS/good-mixx">GitHub</a></div>
+      </article>
+      <article class="card" style="--acc:var(--crate)">
+        <img class="icon" src="img/crateos-icon.png" alt="">
+        <span class="tag">Music library</span>
+        <h3>Crate OS™</h3>
+        <p>Scan your library, clean up tags and build crates in play order. GOOD MIXX comes along.</p>
+        <div class="row"><a class="btn small go" href="#crate-os">Try it</a><a class="btn small" href="https://github.com/XTRAGOODLABS/crate-os">GitHub</a></div>
+      </article>
+      <article class="card" style="--acc:var(--beat)">
+        <img class="icon" src="img/beatdeck-icon.png" alt="">
+        <span class="tag">Beat studio</span>
+        <h3>Beatdeck™</h3>
+        <p>Chop samples onto pads, play them as melodies and sequence two drum kits from your controller.</p>
+        <div class="row"><a class="btn small go" href="#beatdeck">Try it</a><a class="btn small" href="https://github.com/XTRAGOODLABS/beatdeck-studio">GitHub</a></div>
+      </article>
+    </div>
+
+    <div class="eyebrow" style="margin:46px 0 12px">How they fit together</div>
+    <div class="flow">
+      <div style="--acc:var(--crate)"><span class="n">01 · DIG</span><b>Crate OS</b><span>Sort your library and build the crate for tonight.</span></div>
+      <div style="--acc:var(--spin)"><span class="n">02 · PLAY</span><b>Spin Deck</b><span>Mix it live, with stems and your controller.</span></div>
+      <div style="--acc:var(--mixx)"><span class="n">03 · REMEMBER</span><b>GOOD MIXX</b><span>Save the blends that hit. Get the next song.</span></div>
+      <div style="--acc:var(--beat)"><span class="n">04 · MAKE</span><b>Beatdeck</b><span>Flip a sample into your own edits and beats.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPIN DECK ================= -->
+<section class="app" id="spin-deck" style="--acc:var(--spin)">
+  <div class="wrap">
+    <div class="app-top">
+      <div>
+        <div class="eyebrow">DJ app · Free public beta · Mac</div>
+        <h2 class="display">Spin Deck<sup>™</sup></h2>
+        <p class="sub">Your next DJ app is free.</p>
+        <p class="desc">A full DJ app for your Mac: real decks, a real mixer, a memory for the mixes that worked, and stems made right on your computer.</p>
+        <ul class="feat">
+          <li><b>Make Stems</b> — split any song into drums, bass, other and vocals.</li>
+          <li><b>GOOD MIXX™ built in</b> — save a good mix with SHIFT + ASSIST on the Inpulse T7.</li>
+          <li><b>Hercules Inpulse T7</b> support, plus ready-made setups for about 165 controllers.</li>
+          <li>Four real layout skins — BOOTH, CRATE, ON AIR and POCKET — plus color themes.</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn go" href="https://github.com/XTRAGOODLABS/spin-deck/releases/download/beta/Spin-Deck-Apple-Silicon.dmg">Download · Apple Silicon</a>
+          <a class="btn" href="https://github.com/XTRAGOODLABS/spin-deck/releases/download/beta/Spin-Deck-Intel.dmg">Intel Mac</a>
+          <a class="btn" href="https://github.com/XTRAGOODLABS/spin-deck">GitHub ↗</a>
+        </div>
+        <p class="credit">Built on <b>Mixxx</b>, the free and open-source DJ software (GPL-2.0-or-later). Spin Deck is open source too.</p>
+      </div>
+      <div class="shot"><img src="img/spindeck-main.jpg" alt="Spin Deck with two decks, waveforms, mixer and library"></div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-bar"><span class="dot"></span><span class="t">Try it: Make Stems</span><span class="note">BROWSER DEMO · BUILT-IN LOOP · TURN YOUR SOUND ON</span></div>
+      <div class="demo-body">
+        <div class="sd-top">
+          <div class="sd-song"><div class="disc" id="sdDisc"></div><div><b>Late Night Loop</b><span>Demo track · 96 BPM · 8A</span></div></div>
+          <button class="ctl" id="sdPlay">▶ Play</button>
+          <button class="ctl on" id="sdSplit">Make Stems</button>
+        </div>
+        <div class="sd-progress"><i id="sdBar"></i></div>
+        <div class="sd-msg" id="sdMsg">Press Play to hear the full song, then Make Stems to split it into four parts.</div>
+        <div class="lanes" id="sdLanes"></div>
+        <div class="sd-quick" id="sdQuick" hidden>
+          <span class="lbl" style="align-self:center;margin-right:4px">T7 buttons:</span>
+          <button class="ctl" data-q="vocal">VOCAL</button>
+          <button class="ctl" data-q="inst">INSTRUMENTAL</button>
+          <button class="ctl" data-q="all">ALL STEMS</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure><div class="shot"><img src="img/spindeck-themes.jpg" alt="Spin Deck layout skins"></div><figcaption>Color themes. Spin Deck also ships four layout skins: BOOTH, CRATE, ON AIR and POCKET.</figcaption></figure>
+      <figure><div class="shot"><img src="img/spindeck-t7.jpg" alt="Hercules Inpulse T7 control map for Spin Deck"></div><figcaption>The Inpulse T7 control map.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GOOD MIXX ================= -->
+<section class="app" id="good-mixx" style="--acc:var(--mixx)">
+  <div class="wrap">
+    <div class="app-top">
+      <div>
+        <div class="eyebrow">Booth companion · Mac + iPad second screen</div>
+        <h2 class="display">GOOD MIXX<sup>™</sup></h2>
+        <p class="sub">Remember the blends that work.</p>
+        <p class="desc">Ever nail a transition and then forget which two tracks did it? GOOD MIXX follows what you're playing in DJAY or TRAKTOR. Tap GOOD MIX when a blend works, and it suggests what to play next.</p>
+        <ul class="feat">
+          <li>Follows DJAY and TRAKTOR Pro 4 or 3 on the Mac — no typing.</li>
+          <li>Your proven mixes first, then BPM + key matches.</li>
+          <li>STUDIO tab rebuilds your sets, and the set recorder captures them as played.</li>
+          <li>Saved on your Mac, never in the cloud. iPad works as a second screen.</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn go" href="https://github.com/XTRAGOODLABS/good-mixx/releases/latest">Download for Mac</a>
+          <a class="btn" href="https://xtragoodlabs.github.io/good-mixx/">Website</a>
+          <a class="btn" href="https://github.com/XTRAGOODLABS/good-mixx">GitHub ↗</a>
+        </div>
+        <p class="credit">GOOD MIXX is based on an original idea by <b>DJ Aquarobotics</b>.</p>
+      </div>
+      <div class="shot"><img src="img/goodmixx-live.jpg" alt="GOOD MIXX live screen with two decks and the GOOD MIX button"></div>
+    </div>
+
+    <div class="demo" style="position:relative">
+      <div class="saved-sign" id="gmSign"><span>GOOD MIX SAVED</span></div>
+      <div class="demo-bar"><span class="dot"></span><span class="t">Try it: Live</span><span class="note">BROWSER DEMO · SAMPLE SONGS · THE MAC APP FOLLOWS YOUR REAL DECKS</span></div>
+      <div class="demo-body">
+        <div class="gm-status"><i></i><span>Following the demo set — tap a suggestion to mix it in, then hit <b style="color:#fff">GOOD MIX</b> if it worked.</span></div>
+        <div class="gm-decks">
+          <div class="deck" id="gmDeckA" style="--deckc:#7fb2ff"></div>
+          <div class="gm-mid"><button class="gm-btn" id="gmGood">GOOD<br>MIX</button><small id="gmLast">LAST MIX: —</small></div>
+          <div class="deck" id="gmDeckB" style="--deckc:#f0b35a"></div>
+        </div>
+        <div class="gm-next">
+          <div class="lbl" id="gmNextTitle">What's next</div>
+          <div class="gm-filters">
+            <button class="ctl on" data-f="all">ALL SHOWS</button>
+            <button class="ctl" data-f="same">SAME SHOW ONLY</button>
+            <button class="ctl" data-f="up">ENERGY UP (BPM +)</button>
+          </div>
+          <div class="gm-cols">
+            <div><div class="lbl">Your proven mixes</div><div id="gmProven"></div></div>
+            <div><div class="lbl">Good matches (BPM + key)</div><div id="gmMatches"></div></div>
+          </div>
+        </div>
+        <div class="gm-next">
+          <div class="lbl">My mixes · <span id="gmCount">0</span> saved</div>
+          <div id="gmMine"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CRATE OS ================= -->
+<section class="app" id="crate-os" style="--acc:var(--crate)">
+  <div class="wrap">
+    <div class="app-top">
+      <div>
+        <div class="eyebrow">Music library · DJ Edition · Mac</div>
+        <h2 class="display">Crate OS<sup>™</sup></h2>
+        <p class="sub">Your music. Your crates.</p>
+        <p class="desc">Crate OS scans your music library, helps you clean up the tags, and lets you build crates in play order — with GOOD MIXX in the same app.</p>
+        <ul class="feat">
+          <li>Library scanning with tag review and safe, undoable tag writes.</li>
+          <li>Crate Builder: search, arrange in play order, save as M3U8 or CSV.</li>
+          <li>GOOD MIXX live decks, WHAT'S NEXT and saved mix memory built in.</li>
+          <li>Optional iPad or Meta Portal access on your own Wi-Fi.</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn go" href="https://github.com/XTRAGOODLABS/crate-os/releases/download/v0.2.0-beta.1/Crate-OS-DJ-Edition-0.2.0-beta.1-macOS-arm64.zip">Download for Mac (beta)</a>
+          <a class="btn" href="https://xtragoodlabs.github.io/crate-os/">Website</a>
+          <a class="btn" href="https://github.com/XTRAGOODLABS/crate-os">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="shot"><img src="img/crateos-library.jpg" alt="Crate OS library screen"></div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-bar"><span class="dot"></span><span class="t">Try it: Crate Builder</span><span class="note">BROWSER DEMO · SAMPLE LIBRARY · NOTHING LEAVES THIS PAGE</span></div>
+      <div class="demo-body">
+        <div class="co-head">
+          <div style="flex:1;min-width:240px;max-width:420px"><div class="lbl" style="margin-bottom:6px">Crate name</div><input type="text" id="coName" value="Friday Warm-up"></div>
+          <div class="stats">
+            <div><b id="coLib">0</b><span class="lbl">in library</span></div>
+            <div><b id="coIn">0</b><span class="lbl">in crate</span></div>
+            <div><b id="coTime">0:00</b><span class="lbl">run time</span></div>
+          </div>
+        </div>
+        <div class="co-cols">
+          <div class="co-box">
+            <div class="lbl">Find tracks</div>
+            <input type="search" id="coSearch" placeholder="artist, title, key or BPM" style="margin-top:8px" aria-label="Search the sample library">
+            <div class="co-list" id="coLibList"></div>
+          </div>
+          <div class="co-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+              <div><div class="lbl">Current crate</div><div class="co-total" id="coSummary">Empty</div></div>
+              <button class="mini" id="coClear">Clear</button>
+            </div>
+            <div class="co-list" id="coCrate"></div>
+            <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+              <button class="ctl on" id="coM3u">Save M3U8</button>
+              <button class="ctl" id="coCsv">Save CSV</button>
+              <button class="ctl" id="coSort">Sort by BPM</button>
+            </div>
+            <div class="co-out" id="coOut"><div style="display:flex;justify-content:space-between;align-items:center"><span class="lbl" id="coOutLbl">Playlist file</span><button class="mini" id="coCopy">Copy</button></div><pre id="coPre"></pre></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BEATDECK ================= -->
+<section class="app" id="beatdeck" style="--acc:var(--beat)">
+  <div class="wrap">
+    <div class="app-top">
+      <div>
+        <div class="eyebrow">Beat studio · Mac · v1.0.1</div>
+        <h2 class="display">Beatdeck<sup>™</sup></h2>
+        <p class="sub">Chop it. Play it. Flip it.</p>
+        <p class="desc">A free beat-making studio for your Mac. Chop any sample onto pads, play the chops as melodies, sequence two drum kits, and build it all into a song, right from your MIDI controller.</p>
+        <ul class="feat">
+          <li>Waveform trimming, fades and 16 chop pads.</li>
+          <li>Melodic piano roll, two eight-piece drum kits, patterns and song mode.</li>
+          <li>M-Audio Code 25 first, plus Maschine MK2 and Alesis Vortex mappings.</li>
+          <li>Tempo sync with other apps through Ableton Link. WAV export.</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn go" href="https://github.com/XTRAGOODLABS/beatdeck-studio/releases/download/v1.0.1/Beatdeck-1.0.1-macOS-arm64.dmg">Download for Mac</a>
+          <a class="btn" href="https://xtragoodlabs.github.io/beatdeck-studio/">Website</a>
+          <a class="btn" href="https://github.com/XTRAGOODLABS/beatdeck-studio">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="shot"><img src="img/beatdeck-sampler.jpg" alt="Beatdeck sampler with chops, waveform and two drum kits"></div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-bar"><span class="dot"></span><span class="t">Try it: Drum sequencer</span><span class="note">BROWSER DEMO · KEYS 1–8 PLAY THE PADS · TURN YOUR SOUND ON</span></div>
+      <div class="demo-body">
+        <div class="bd-top">
+          <button class="ctl" id="bdPlay">▶ Play</button>
+          <div class="tempo"><span class="lbl">Tempo</span><input type="range" id="bdTempo" min="70" max="150" value="92" aria-label="Tempo"><b id="bdTempoV">92</b><span class="lbl">BPM</span></div>
+          <div class="tempo"><span class="lbl">Swing</span><input type="range" id="bdSwing" min="0" max="60" value="22" aria-label="Swing"><b id="bdSwingV">22</b><span class="lbl">%</span></div>
+          <div style="display:flex;gap:6px;margin-left:auto;flex-wrap:wrap">
+            <button class="ctl" data-p="boom">Boom bap</button>
+            <button class="ctl" data-p="house">House</button>
+            <button class="ctl" data-p="trap">Trap</button>
+            <button class="ctl" data-p="clear">Clear</button>
+          </div>
+        </div>
+        <div class="bd-grid" id="bdGrid"></div>
+        <div class="lbl" style="margin-top:18px">Kit A · pads 1–8 (tap or use your keyboard)</div>
+        <div class="bd-pads" id="bdPads"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2 class="display big">Stay xtra good.</h2>
+    <div class="cols">
+      <div>
+        <p style="color:#cfcfcf;max-width:460px;margin:0 0 16px">Every app here is free. If one of them saves your set, a coffee keeps the next update coming.</p>
+        <a class="btn" style="background:#ffdd00;color:#000;border-color:#ffdd00" href="https://buymeacoffee.com/xtragoodlabs">☕ Buy me a coffee</a>
+        <p style="font-size:14px;color:var(--muted);margin-top:18px">Contact: xtragoodlabs@gmail.com</p>
+      </div>
+      <div><h5>Apps</h5><ul>
+        <li><a href="https://github.com/XTRAGOODLABS/spin-deck">Spin Deck™</a></li>
+        <li><a href="https://github.com/XTRAGOODLABS/good-mixx">GOOD MIXX™</a></li>
+        <li><a href="https://github.com/XTRAGOODLABS/crate-os">Crate OS™</a></li>
+        <li><a href="https://github.com/XTRAGOODLABS/beatdeck-studio">Beatdeck™ Studio</a></li>
+      </ul></div>
+      <div><h5>More</h5><ul>
+        <li><a href="https://github.com/XTRAGOODLABS">XTRA GOOD LABS on GitHub</a></li>
+        <li><a href="https://github.com/XTRAGOODLABS/spin-deck/issues/new/choose">Report a Spin Deck bug</a></li>
+        <li><a href="https://buymeacoffee.com/xtragoodlabs">Buy Me a Coffee</a></li>
+      </ul></div>
+    </div>
+    <p class="fine">Spin Deck™, GOOD MIXX™, Crate OS™ and Beatdeck™ are trademarks of XTRA GOOD LABS. GOOD MIXX is based on an original idea by DJ Aquarobotics. Spin Deck is built on Mixxx by the Mixxx Development Team and is licensed under the GNU GPL, version 2 or later; Inpulse T7 support by Infinite-Grok. DJAY and TRAKTOR are trademarks of their owners; these apps are not made by or affiliated with them. The demos on this page use sample songs and sounds made in your browser.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const toast=(m)=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),1800)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>{s=Math.round(s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=String(s%60).padStart(2,'0');return h?h+':'+String(m).padStart(2,'0')+':'+x:m+':'+x};
+
+/* ticker */
+(function(){const names=['<span class="c1">SPIN DECK™</span>','<span>✦</span>','<span class="c2">GOOD MIXX™</span>','<span>✦</span>','<span class="c3">CRATE OS™</span>','<span>✦</span>','<span class="c4">BEATDECK™</span>','<span>✦</span>','<span>XTRA GOOD LABS</span>','<span>✦</span>'];let h='';for(let i=0;i<6;i++)h+=names.join('');$('#ticker').innerHTML=h+h})();
+
+/* ---------- shared audio ---------- */
+let ctx=null,master=null,noiseBuf=null;
+function audio(){
+  if(!ctx){
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC){toast('This browser has no sound support');return null}
+    ctx=new AC();master=ctx.createGain();master.gain.value=.8;
+    const comp=ctx.createDynamicsCompressor();master.connect(comp);comp.connect(ctx.destination);
+    noiseBuf=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  }
+  if(ctx.state==='suspended')ctx.resume().catch(()=>{});
+  return ctx;
+}
+function noise(t,dur,type,freq,gain,out,q){const s=ctx.createBufferSource();s.buffer=noiseBuf;const f=ctx.createBiquadFilter();f.type=type;f.frequency.value=freq;if(q)f.Q.value=q;const g=ctx.createGain();g.gain.setValueAtTime(gain,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);s.connect(f);f.connect(g);g.connect(out);s.start(t,Math.random()*.5);s.stop(t+dur+.02)}
+function tone(t,dur,type,f0,f1,gain,out){const o=ctx.createOscillator();o.type=type;o.frequency.setValueAtTime(f0,t);if(f1)o.frequency.exponentialRampToValueAtTime(f1,t+dur*.6);const g=ctx.createGain();g.gain.setValueAtTime(gain,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g);g.connect(out);o.start(t);o.stop(t+dur+.02)}
+const drums={
+  kick:(t,o)=>tone(t,.45,'sine',150,42,1,o),
+  snare:(t,o)=>{noise(t,.2,'highpass',1500,.6,o);tone(t,.12,'triangle',220,160,.35,o)},
+  clap:(t,o)=>{for(let i=0;i<3;i++)noise(t+i*.011,.1,'bandpass',1200,.55,o,1.2);noise(t+.033,.22,'bandpass',1200,.45,o,1.2)},
+  hat:(t,o)=>noise(t,.05,'highpass',7500,.32,o),
+  ohat:(t,o)=>noise(t,.3,'highpass',7000,.28,o),
+  tom:(t,o)=>tone(t,.35,'sine',190,95,.75,o),
+  rim:(t,o)=>{tone(t,.04,'square',1700,0,.25,o);noise(t,.03,'bandpass',3000,.3,o,4)},
+  perc:(t,o)=>tone(t,.18,'sine',620,440,.45,o)
+};
+/* only one demo plays at a time */
+const players={};
+function stopOthers(me){Object.keys(players).forEach(k=>{if(k!==me&&players[k].playing)players[k].stop()})}
+
+/* ---------- BEATDECK ---------- */
+(function(){
+  const rows=[['Kick','kick'],['Snare','snare'],['Hat','hat'],['Clap','clap']];
+  const pats={
+    boom:['x.....x...x.....','....x.......x...','x.x.x.x.x.x.x.xx','............x...'],
+    house:['x...x...x...x...','....x.......x...','..x...x...x...x.','....x.......x..x'],
+    trap:['x......x..x.....','........x.......','xxxxxxxxx.x.xxxx','........x.......'],
+    clear:['................','................','................','................']
+  };
+  let grid=pats.boom.map(r=>[...r].map(c=>c==='x'));
+  const g=$('#bdGrid');
+  function draw(){
+    let h='';rows.forEach((r,ri)=>{h+=`<div class="name">${r[0]}</div>`;for(let s=0;s<16;s++)h+=`<button class="step row${ri} ${s%4===0?'beat4':''} ${grid[ri][s]?'on':''}" data-r="${ri}" data-s="${s}" aria-label="${r[0]} step ${s+1}" aria-pressed="${grid[ri][s]}"></button>`});
+    g.innerHTML=h;
+  }
+  draw();
+  g.addEventListener('click',e=>{const b=e.target.closest('.step');if(!b)return;const r=+b.dataset.r,s=+b.dataset.s;grid[r][s]=!grid[r][s];b.classList.toggle('on');b.setAttribute('aria-pressed',grid[r][s]);if(grid[r][s]&&audio())drums[rows[r][1]](ctx.currentTime,master)});
+  $$('[data-p]').forEach(b=>b.addEventListener('click',()=>{grid=pats[b.dataset.p].map(r=>[...r].map(c=>c==='x'));draw();if(b.dataset.p!=='clear'){$('#bdTempo').value=b.dataset.p==='house'?124:b.dataset.p==='trap'?140:92;$('#bdTempo').dispatchEvent(new Event('input'))}}));
+  $('#bdTempo').addEventListener('input',e=>$('#bdTempoV').textContent=e.target.value);
+  $('#bdSwing').addEventListener('input',e=>$('#bdSwingV').textContent=e.target.value);
+  const padDefs=[['Kick','kick'],['Snare','snare'],['Clap','clap'],['Closed Hat','hat'],['Open Hat','ohat'],['Low Tom','tom'],['Rim','rim'],['Perc','perc']];
+  $('#bdPads').innerHTML=padDefs.map((p,i)=>`<button class="pad" data-i="${i}"><small>0${i+1}</small>${p[0]}</button>`).join('');
+  function hitPad(i){const b=$$('.pad')[i];if(!b||!audio())return;drums[padDefs[i][1]](ctx.currentTime,master);b.classList.add('hit');setTimeout(()=>b.classList.remove('hit'),110)}
+  $('#bdPads').addEventListener('pointerdown',e=>{const b=e.target.closest('.pad');if(b){e.preventDefault();hitPad(+b.dataset.i)}});
+  document.addEventListener('keydown',e=>{if(e.target.matches('input'))return;const n=parseInt(e.key,10);if(n>=1&&n<=8){const r=$('#beatdeck').getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)hitPad(n-1)}});
+  let timer=null,step=0,next=0,shown=-1;const q=[];
+  const P={playing:false,
+    start(){if(!audio())return;stopOthers('bd');P.playing=true;step=0;next=ctx.currentTime+.06;$('#bdPlay').textContent='■ Stop';$('#bdPlay').classList.add('on');timer=setInterval(sched,25);requestAnimationFrame(vis)},
+    stop(){P.playing=false;clearInterval(timer);$('#bdPlay').textContent='▶ Play';$('#bdPlay').classList.remove('on');$$('.step.now').forEach(b=>b.classList.remove('now'));q.length=0;shown=-1}};
+  players.bd=P;
+  function sched(){const bpm=+$('#bdTempo').value,sw=+$('#bdSwing').value/100,s16=60/bpm/4;
+    while(next<ctx.currentTime+.12){const t=next+(step%2?s16*sw*.66:0);rows.forEach((r,ri)=>{if(grid[ri][step])drums[r[1]](t,master)});q.push([step,t]);step=(step+1)%16;next+=s16}}
+  function vis(){if(!P.playing)return;while(q.length&&q[0][1]<=ctx.currentTime){const s=q.shift()[0];if(s!==shown){$$('.step.now').forEach(b=>b.classList.remove('now'));$$(`.step[data-s="${s}"]`).forEach(b=>b.classList.add('now'));shown=s}}requestAnimationFrame(vis)}
+  $('#bdPlay').addEventListener('click',()=>P.playing?P.stop():P.start());
+})();
+
+/* ---------- SPIN DECK: Make Stems ---------- */
+(function(){
+  const stems=[{k:'drums',n:'Drums',c:'#3ddc84'},{k:'bass',n:'Bass',c:'#7fb2ff'},{k:'other',n:'Other',c:'#f0b35a'},{k:'vocals',n:'Vocals',c:'#ff6fae'}];
+  const BPM=96,S16=60/BPM/4,LEN=32;
+  const kick=[0,7,10,16,23,26],snare=[8,24],hat=[...Array(16)].map((_,i)=>i*2);
+  const bassN={0:55,3:55,6:65.41,10:55,14:49,16:43.65,19:43.65,22:49,26:55,30:65.41};
+  const chordA=[220,261.63,329.63],chordF=[174.61,220,261.63];
+  const stab={4:chordA,12:chordA,20:chordF,28:chordF};
+  const vox={0:[329.63,6],8:[293.66,6],16:[261.63,6],24:[329.63,7]};
+  let split=false,gains={},mute={drums:false,bass:false,other:false,vocals:false},timer=null,step=0,next=0;
+  const lanes=$('#sdLanes');
+  function laneData(k){const a=new Array(LEN).fill(0);
+    if(k==='drums'||k==='whole'){kick.forEach(i=>a[i]=Math.max(a[i],1));snare.forEach(i=>a[i]=Math.max(a[i],.8));hat.forEach(i=>a[i]=Math.max(a[i],.3))}
+    if(k==='bass'||k==='whole'){Object.keys(bassN).forEach(i=>{for(let j=0;j<3;j++)a[+i+j]=Math.max(a[+i+j]||0,.7-j*.15)})}
+    if(k==='other'||k==='whole'){Object.keys(stab).forEach(i=>{a[+i]=Math.max(a[+i],.6);a[+i+1]=Math.max(a[+i+1],.35)})}
+    if(k==='vocals'||k==='whole'){Object.entries(vox).forEach(([i,v])=>{for(let j=0;j<v[1];j++)a[+i+j]=Math.max(a[+i+j]||0,.5+.1*Math.sin(j))})}
+    return a}
+  function drawLane(cv,k,col){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1;cv.width=r.width*dpr;cv.height=r.height*dpr;const c=cv.getContext('2d');c.scale(dpr,dpr);const a=laneData(k),w=r.width,h=r.height,bw=w/LEN/4;c.fillStyle=col;
+    for(let i=0;i<LEN*4;i++){const v=a[Math.floor(i/4)]*(1-(i%4)*.18)*(.75+.25*Math.random());const bh=Math.max(1.5,v*h*.9);c.globalAlpha=.9;c.fillRect(i*bw,(h-bh)/2,Math.max(1,bw-1),bh)}}
+  function render(){
+    if(!split){lanes.innerHTML=`<div class="lane whole"><span class="nm">Full song</span><canvas data-k="whole"></canvas><span class="lbl">MIX</span></div>`}
+    else lanes.innerHTML=stems.map(s=>`<div class="lane ${mute[s.k]?'muted':''}" style="--lc:${s.c}"><span class="nm">${s.n}</span><canvas data-k="${s.k}"></canvas><button class="mini" data-m="${s.k}" aria-pressed="${!mute[s.k]}">${mute[s.k]?'OFF':'ON'}</button></div>`).join('');
+    $$('#sdLanes canvas').forEach(cv=>drawLane(cv,cv.dataset.k,cv.dataset.k==='whole'?'#e8e8e8':stems.find(s=>s.k===cv.dataset.k).c));
+  }
+  render();addEventListener('resize',()=>{clearTimeout(render._t);render._t=setTimeout(render,150)});
+  function setGains(){if(!ctx)return;stems.forEach(s=>{if(gains[s.k])gains[s.k].gain.setTargetAtTime(split&&mute[s.k]?0:1,ctx.currentTime,.02)})}
+  lanes.addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(!b)return;mute[b.dataset.m]=!mute[b.dataset.m];setGains();render()});
+  $$('[data-q]').forEach(b=>b.addEventListener('click',()=>{const q=b.dataset.q;mute={drums:q==='vocal',bass:q==='vocal',other:q==='vocal',vocals:q==='inst'};setGains();render()}));
+  function voice(t,f,len,out){const o=ctx.createOscillator(),o2=ctx.createOscillator(),lfo=ctx.createOscillator(),lg=ctx.createGain(),bp=ctx.createBiquadFilter(),g=ctx.createGain();o.type='sawtooth';o2.type='sine';o.frequency.value=f;o2.frequency.value=f;lfo.frequency.value=5.2;lg.gain.value=f*.012;lfo.connect(lg);lg.connect(o.frequency);lg.connect(o2.frequency);bp.type='bandpass';bp.frequency.value=650;bp.Q.value=3;const d=len*S16;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.32,t+.08);g.gain.setValueAtTime(.32,t+d-.1);g.gain.linearRampToValueAtTime(0,t+d);o.connect(bp);o2.connect(g);bp.connect(g);g.connect(out);[o,o2,lfo].forEach(x=>{x.start(t);x.stop(t+d+.05)})}
+  function bass(t,f,out){const o=ctx.createOscillator(),lp=ctx.createBiquadFilter(),g=ctx.createGain();o.type='sawtooth';o.frequency.value=f;lp.type='lowpass';lp.frequency.value=380;g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.001,t+S16*3);o.connect(lp);lp.connect(g);g.connect(out);o.start(t);o.stop(t+S16*3+.02)}
+  function chord(t,fs,out){fs.forEach(f=>tone(t,.32,'triangle',f,0,.16,out))}
+  function sched(){while(next<ctx.currentTime+.12){const t=next,s=step;
+      if(kick.includes(s))drums.kick(t,gains.drums);if(snare.includes(s))drums.snare(t,gains.drums);if(hat.includes(s))drums.hat(t,gains.drums);
+      if(bassN[s])bass(t,bassN[s],gains.bass);if(stab[s])chord(t,stab[s],gains.other);if(vox[s])voice(t,vox[s][0],vox[s][1],gains.vocals);
+      step=(step+1)%LEN;next+=S16}}
+  const P={playing:false,
+    start(){if(!audio())return;stopOthers('sd');stems.forEach(s=>{if(!gains[s.k]){gains[s.k]=ctx.createGain();gains[s.k].connect(master)}});setGains();P.playing=true;step=0;next=ctx.currentTime+.06;timer=setInterval(sched,25);$('#sdPlay').textContent='■ Stop';$('#sdDisc').classList.add('spin')},
+    stop(){P.playing=false;clearInterval(timer);$('#sdPlay').textContent='▶ Play';$('#sdDisc').classList.remove('spin')}};
+  players.sd=P;
+  $('#sdPlay').addEventListener('click',()=>P.playing?P.stop():P.start());
+  $('#sdSplit').addEventListener('click',()=>{
+    const b=$('#sdSplit');
+    if(split){split=false;mute={drums:false,bass:false,other:false,vocals:false};setGains();render();b.textContent='Make Stems';$('#sdBar').style.width='0';$('#sdQuick').hidden=true;$('#sdMsg').textContent='Back to the original song.';return}
+    b.disabled=true;let p=0;const msgs=['Loading the splitter…','Finding the drums…','Pulling out the bass…','Separating vocals…','Saving four stem files…'];
+    const iv=setInterval(()=>{p+=4;$('#sdBar').style.width=p+'%';$('#sdMsg').textContent=msgs[Math.min(msgs.length-1,Math.floor(p/21))];
+      if(p>=100){clearInterval(iv);split=true;b.disabled=false;b.textContent='Use original';render();setGains();$('#sdQuick').hidden=false;$('#sdMsg').textContent='Done — 4 stems. Turn parts on and off while it plays. (In the Mac app this runs the real Demucs splitter on your song.)'}},70);
+  });
+})();
+
+/* ---------- sample library (Crate OS + GOOD MIXX) ---------- */
+const LIB=[
+ ['Golden Hour Trio','Late Night',94,'8A',180,'Golden Hour Groove'],
+ ['Low End Society','Slow Burn',93,'8A',328,'Golden Hour Groove'],
+ ['Midnight Tape Club','Sidewalk',95,'9A',279,'Dusty Crate Hip-Hop Hour'],
+ ['Night Bus Collective','Cassette',94,'7A',254,'Dusty Crate Hip-Hop Hour'],
+ ['Night Bus Collective','Second Wind',96,'8B',230,'Golden Hour Groove'],
+ ['Crate Diggers Union','Vinyl Dreams',92,'8A',205,'Dusty Crate Hip-Hop Hour'],
+ ['Dusty Fingers','Rooftop',97,'9A',198,'Dusty Crate Hip-Hop Hour'],
+ ['Dusty Fingers','Back Porch',90,'10A',241,'Golden Hour Groove'],
+ ['The Velvet Signals','Blue Light',95,'8A',262,'Golden Hour Groove'],
+ ['The Velvet Signals','Heatwave',100,'9B',219,'Friday Night House'],
+ ['Sunset Rhodes','Afterglow',98,'7A',276,'Golden Hour Groove'],
+ ['Sunset Rhodes','Palm Shade',94,'3A',233,'Golden Hour Groove'],
+ ['Golden Hour Trio','Neon Rain',96,'8A',247,'Dusty Crate Hip-Hop Hour'],
+ ['Basement Static','Groundwork',122,'8A',372,'Friday Night House'],
+ ['Basement Static','Floor Plan',124,'9A',405,'Friday Night House'],
+ ['Pacific Drift','Warehouse Light',124,'8A',388,'Friday Night House'],
+ ['Pacific Drift','Morning Set',123,'8B',351,'Friday Night House'],
+ ['Lot 49','Undercurrent',125,'7A',412,'Friday Night House'],
+ ['Lot 49','Deep Inside Out',126,'9A',398,'Friday Night House'],
+ ['Hillside Radio','Main Street',121,'2B',334,'Friday Night House'],
+ ['Hillside Radio','Gold Country',99,'8A',214,'Dusty Crate Hip-Hop Hour'],
+ ['Quiet Engine','Cold Brew',88,'8A',196,'Golden Hour Groove'],
+ ['Quiet Engine','Long Drive',91,'9A',288,'Golden Hour Groove'],
+ ['Murphy Street Band','Saturday',128,'10A',366,'Friday Night House']
+].map((r,i)=>({id:i,artist:r[0],title:r[1],bpm:r[2],key:r[3],len:r[4],show:r[5]}));
+
+/* ---------- GOOD MIXX ---------- */
+(function(){
+  const camOk=(a,b)=>{const na=parseInt(a),nb=parseInt(b),la=a.slice(-1),lb=b.slice(-1);if(a===b)return 'same key';if(la===lb&&(Math.abs(na-nb)===1||Math.abs(na-nb)===11))return 'key ±1';if(na===nb)return 'relative key';return null};
+  let A=LIB[0],B=LIB[1],playing='B',filter='all',last=null;
+  let mixes=[{from:1,to:12},{from:1,to:8},{from:12,to:4}];
+  function deckHTML(t,side){const p=playing===side;return `<div class="lbl">DECK ${side}</div>${p?'<span class="badge">PLAYING</span>':''}<h4>${esc(t.title)}</h4><div class="art">${esc(t.artist)}</div><div class="chips"><span class="chip">${t.bpm} BPM</span><span class="chip">${t.key}</span><span class="chip">${fmt(t.len)}</span></div><div class="prog"><i data-prog="${side}"></i></div>`}
+  let pos={A:.62,B:.12};
+  function render(){
+    $('#gmDeckA').innerHTML=deckHTML(A,'A');$('#gmDeckB').innerHTML=deckHTML(B,'B');
+    $('#gmDeckA').classList.toggle('playing',playing==='A');$('#gmDeckB').classList.toggle('playing',playing==='B');
+    const cur=playing==='A'?A:B,other=playing==='A'?B:A;
+    $('#gmNextTitle').textContent="What's next after "+cur.title;
+    let pool=LIB.filter(t=>t.id!==cur.id&&t.id!==other.id);
+    if(filter==='same')pool=pool.filter(t=>t.show===cur.show);
+    if(filter==='up')pool=pool.filter(t=>t.bpm>cur.bpm);
+    const provenIds=mixes.filter(m=>m.from===cur.id).map(m=>m.to);
+    const proven=pool.filter(t=>provenIds.includes(t.id));
+    const matches=pool.filter(t=>!provenIds.includes(t.id)).map(t=>{const d=(t.bpm-cur.bpm)/cur.bpm*100,k=camOk(cur.key,t.key);return {t,d,k}}).filter(x=>x.k&&Math.abs(x.d)<=6).sort((a,b)=>Math.abs(a.d)-Math.abs(b.d)||(a.k==='same key'?-1:1)).slice(0,6);
+    const row=(t,em,cls)=>`<button class="sug ${cls||''}" data-id="${t.id}"><div><b>${esc(t.title)}</b><span>${esc(t.artist)} · ${esc(t.show)}</span></div><div class="r">${t.bpm} BPM · ${t.key}<em>${em}</em></div></button>`;
+    $('#gmProven').innerHTML=proven.length?proven.map(t=>row(t,'✓ worked before','proven')).join(''):'<div class="empty">No saved mixes from this song yet.</div>';
+    $('#gmMatches').innerHTML=matches.length?matches.map(x=>row(x.t,x.k+' · '+(x.d>=0?'+':'')+x.d.toFixed(1)+'% tempo')).join(''):'<div class="empty">No close matches with this filter.</div>';
+    $('#gmCount').textContent=mixes.length;
+    $('#gmMine').innerHTML=mixes.length?mixes.slice().reverse().map((m,i)=>{const a=LIB[m.from],b=LIB[m.to];return `<div class="co-row"><div class="meta"><b>${esc(a.title)} → ${esc(b.title)}</b><span>${a.bpm} → ${b.bpm} BPM · ${a.key} → ${b.key}</span></div><button class="mini" data-undo="${mixes.length-1-i}">Undo</button></div>`}).join(''):'<div class="empty">Nothing saved yet.</div>';
+    $('#gmLast').textContent=last?'LAST MIX: '+last:'LAST MIX: —';
+  }
+  render();
+  function load(id){const t=LIB[id];if(playing==='B'){A=t;playing='A';pos.A=0}else{B=t;playing='B';pos.B=0}render();toast('Mixed in: '+t.title)}
+  $('#good-mixx').addEventListener('click',e=>{
+    const s=e.target.closest('.sug');if(s){load(+s.dataset.id);return}
+    const u=e.target.closest('[data-undo]');if(u){mixes.splice(+u.dataset.undo,1);render();toast('Mix removed');return}
+    const f=e.target.closest('[data-f]');if(f){filter=f.dataset.f;$$('[data-f]').forEach(x=>x.classList.toggle('on',x===f));render()}
+  });
+  $('#gmGood').addEventListener('click',()=>{
+    const to=playing==='A'?A:B,from=playing==='A'?B:A;
+    if(!mixes.some(m=>m.from===from.id&&m.to===to.id))mixes.push({from:from.id,to:to.id});
+    last=(playing==='A'?'B → A':'A → B');render();
+    const s=$('#gmSign');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),1100);
+    if(audio()){const t=ctx.currentTime;tone(t,.12,'sine',880,0,.25,master);tone(t+.1,.2,'sine',1320,0,.25,master)}
+  });
+  setInterval(()=>{['A','B'].forEach(s=>{const len=(s==='A'?A:B).len;if(playing===s)pos[s]=Math.min(1,pos[s]+.5/len);const el=document.querySelector(`[data-prog="${s}"]`);if(el)el.style.width=(pos[s]*100)+'%'})},500);
+})();
+
+/* ---------- CRATE OS ---------- */
+(function(){
+  let crate=[0,1,2,3,4,5];
+  $('#coLib').textContent=LIB.length;
+  function renderLib(){
+    const q=$('#coSearch').value.trim().toLowerCase();
+    const list=LIB.filter(t=>!q||[t.artist,t.title,t.key,String(t.bpm),t.show].join(' ').toLowerCase().includes(q));
+    $('#coLibList').innerHTML=list.length?list.map(t=>{const inC=crate.includes(t.id);return `<div class="co-row"><div class="meta"><b>${esc(t.artist)} — ${esc(t.title)}</b><span>${esc(t.show)}</span></div><span class="k">${t.bpm} · ${t.key} · ${fmt(t.len)}</span><button class="mini ${inC?'':'add'}" data-add="${t.id}" ${inC?'disabled':''}>${inC?'Added':'Add'}</button></div>`}).join(''):'<div class="empty">No tracks match that search.</div>';
+  }
+  function renderCrate(){
+    const tot=crate.reduce((s,id)=>s+LIB[id].len,0);
+    $('#coIn').textContent=crate.length;$('#coTime').textContent=fmt(tot);
+    $('#coSummary').textContent=crate.length?`${crate.length} tracks · ${fmt(tot)}`:'Empty';
+    $('#coCrate').innerHTML=crate.length?crate.map((id,i)=>{const t=LIB[id];return `<div class="co-row"><span class="n">${i+1}</span><div class="meta"><b>${esc(t.artist)} — ${esc(t.title)}</b><span>${t.bpm} BPM · ${t.key} · ${fmt(t.len)}</span></div><button class="mini" data-up="${i}" ${i===0?'disabled':''} aria-label="Move up">↑</button><button class="mini" data-down="${i}" ${i===crate.length-1?'disabled':''} aria-label="Move down">↓</button><button class="mini" data-rm="${i}">Remove</button></div>`}).join(''):'<div class="empty">Add tracks from the library to start a crate.</div>';
+    renderLib();
+  }
+  renderCrate();
+  $('#coSearch').addEventListener('input',renderLib);
+  $('#crate-os').addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+    if(d.add!==undefined){crate.push(+d.add);renderCrate()}
+    else if(d.up!==undefined){const i=+d.up;[crate[i-1],crate[i]]=[crate[i],crate[i-1]];renderCrate()}
+    else if(d.down!==undefined){const i=+d.down;[crate[i+1],crate[i]]=[crate[i],crate[i+1]];renderCrate()}
+    else if(d.rm!==undefined){crate.splice(+d.rm,1);renderCrate()}
+  });
+  $('#coClear').addEventListener('click',()=>{crate=[];renderCrate();$('#coOut').classList.remove('show')});
+  $('#coSort').addEventListener('click',()=>{crate.sort((a,b)=>LIB[a].bpm-LIB[b].bpm);renderCrate();toast('Sorted slow to fast')});
+  function out(kind){
+    if(!crate.length){toast('Add some tracks first');return}
+    const name=($('#coName').value||'Untitled crate').trim();let txt;
+    if(kind==='m3u'){txt='#EXTM3U\n#PLAYLIST:'+name+'\n'+crate.map(id=>{const t=LIB[id];return `#EXTINF:${t.len},${t.artist} - ${t.title}\nMusic/${t.artist}/${t.title}.mp3`}).join('\n')}
+    else{const q=s=>'"'+String(s).replace(/"/g,'""')+'"';txt='position,artist,title,bpm,key,length\n'+crate.map((id,i)=>{const t=LIB[id];return [i+1,q(t.artist),q(t.title),t.bpm,t.key,fmt(t.len)].join(',')}).join('\n')}
+    $('#coOutLbl').textContent=(kind==='m3u'?name+'.m3u8':name+'.csv')+' — preview';$('#coPre').textContent=txt;$('#coOut').classList.add('show');
+  }
+  $('#coM3u').addEventListener('click',()=>out('m3u'));$('#coCsv').addEventListener('click',()=>out('csv'));
+  $('#coCopy').addEventListener('click',()=>{const t=$('#coPre').textContent;if(navigator.clipboard)navigator.clipboard.writeText(t).then(()=>toast('Copied'),()=>toast('Copy blocked — select the text instead'));else toast('Select the text to copy')});
+})();
+
+})();
+</script>
+</body>
+</html>
